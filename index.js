@@ -50,3 +50,104 @@
 //const user = secondUserList[20000]; //find: 0.014ms
 //const user = secondUserList[200000]; //find: 0.018ms
 //console.timeEnd("find");
+
+// const set = new Set();
+// set.add(1);
+// set.add(2);
+// set.add(3);
+// set.add(1);
+
+// console.log(set);
+// console.log(set.size);
+
+// const mezba = { userName: "mezba" };
+// const ezba = { userName: "ezba" };
+// const zba = { userName: "zba" };
+// const set = new Set();
+
+// set.add(mezba);
+// set.add(ezba);
+// set.add(zba);
+// set.add(mezba);
+
+// console.log(set);
+// console.log(set.size);
+
+const arr = ["a", "b", "c", "d", "e", "a", "b", "c", "d", "e"];
+//const set = new Set(arr);
+//console.log(set);
+//const remDup = [...set];
+//console.log(remDup);
+
+//set iteration
+// const test = set.forEach((val) => console.log(val));
+// console.log(test);
+
+//const setToArr = Array.from(set).push("n"); //6 cause push return the length of array
+//setToArr.push("n"); //correct way
+//console.log(setToArr);
+
+// console.log(set.has("f"));
+// console.log(set.has("a"));
+// console.log(set.delete("a"));
+// console.log(set);
+// console.log(set.delete("a"));
+// console.log(set);
+
+//Remove duplicate brute Force
+// const remDupArr = (arr) => {
+//   const newArr = [];
+//   arr.forEach((element) => {
+//     if (!newArr.includes(element)) newArr.push(element);
+//   });
+//   return newArr;
+// };
+// console.log(remDupArr(arr));
+
+function generateSimData(size) {
+  const itemPool = [
+    "Apple",
+    "Mango",
+    "Banana",
+    "Orange",
+    "Grape",
+    "Strawberry",
+    "Pineapple",
+    "Watermelon",
+    "Cherry",
+    "Blueberry",
+    "Apple",
+    "Orange",
+  ];
+  const generatedData = [];
+  for (let i = 0; i < size; i++) {
+    const randomIndex = Math.floor(Math.random() * itemPool.length);
+    generatedData.push(itemPool[randomIndex]);
+  }
+  return generatedData;
+}
+
+const hugeDataSet = generateSimData(500000);
+
+console.log("Data size", hugeDataSet.length);
+
+//brute force
+// const start = performance.now();
+// const removeDup = (arr) => {
+//   const newArr = [];
+//   arr.forEach((el) => {
+//     if (newArr.includes(el)) return;
+//     newArr.push(el);
+//   });
+//   return newArr;
+// };
+// console.log(removeDup(hugeDataSet));
+// const end = performance.now();
+// console.log(`Array implementation took ${end - start} milliseconds`); //13.708699999999993 milliseconds
+
+//with set
+// const start = performance.now();
+// const remDup = [...new Set(hugeDataSet)];
+// console.log(remDup);
+// const end = performance.now();
+// console.log(`Array implementation took ${end - start} milliseconds`); //6.980399999999996
