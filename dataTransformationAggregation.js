@@ -201,3 +201,30 @@ const rawApiData = [
 
 // const filtered = [...new Set(tagsFromPosts.flat(2))];
 // console.log(filtered);
+
+//Array cross matching and Array.from() explained
+
+// const currentUserRoles = ["user", "editor", "admin"];
+// const featureAccessRoles = ["admin", "manager"];
+
+// const numbers = [1, 5, 3, 7, 5];
+// const hasOdd = numbers.some((arr) => arr % 2 === 1);
+// console.log(hasOdd);
+
+// const canAccess = currentUserRoles.some((role) =>
+//   featureAccessRoles.includes(role),
+// );
+// console.log(canAccess);
+
+// const arr = Array.from({ length: 5 }).fill(0);
+// const arr = Array.from({ length: 5 }, (_, i) => i + 1);
+// const arr = Array.from([1, 2, 3], (value, i) => value * value);
+// console.log(arr);
+
+// const range = (start, stop, step) => {
+//   return Array.from(
+//     { length: Math.ceil((stop - start) / step) },
+//     (_, i) => start + i * step,
+//   );
+// };
+// console.log(range(0, 11, 2));
