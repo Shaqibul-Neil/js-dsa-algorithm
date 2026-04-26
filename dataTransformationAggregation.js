@@ -185,3 +185,19 @@ const rawApiData = [
 
 // console.log(electronics);
 */
+
+//Sorting and flattening array
+// const numbers = [40, 100, 1, 5, 25, 10];
+// const fruits = ["Banana", "apple", "Cherry", "date"];
+
+// const sorted = fruits.sort((a, b) => a.localeCompare(b));
+// console.log(sorted);
+// console.log(fruits);
+// const tagsFromPosts = [
+//   ["javascript", "react", "css"],
+//   ["node", ["express"]],
+//   ["css", "html", "react"],
+// ];
+
+// const filtered = [...new Set(tagsFromPosts.flat(2))];
+// console.log(filtered);
