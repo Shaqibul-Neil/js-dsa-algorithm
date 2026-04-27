@@ -243,17 +243,83 @@ const rawApiData = [
 // console.log(total);
 
 // Find best scorer
-const players = [
-  { name: "Jamal Bhuyan", score: 88 },
-  { name: "Shekh Morsalin", score: 81 },
-  { name: "Rakib Hossain", score: 95 },
-  { name: "Topu Barman", score: 91 },
-  { name: "Sohel Rana", score: 72 },
+// const players = [
+//   { name: "Jamal Bhuyan", score: 88 },
+//   { name: "Shekh Morsalin", score: 81 },
+//   { name: "Rakib Hossain", score: 95 },
+//   { name: "Topu Barman", score: 91 },
+//   { name: "Sohel Rana", score: 72 },
+// ];
+
+// const bestScorer = players.reduce((bestPlayer, player) => {
+//   if (bestPlayer.score > player.score) return bestPlayer;
+//   return player;
+// }, players[0]);
+
+// console.log(bestScorer);
+
+//* Generate a lookup table
+
+//? Input
+// const postsArray = [
+//   { id: "p-101", title: "Intro to SQL", author: "Alex" },
+//   { id: "p-102", title: "Data Structures in JS", author: "Beth" },
+//   { id: "p-103", title: "Understanding Reduce", author: "Chris" },
+//   { id: "p-104", title: "CSS Grid Tricks", author: "Alex" },
+// ];
+
+//? Output
+// {
+//   "p-101": { "id": "p-101", "title": "Intro to SQL", "author": "Alex" },
+//   "p-102": { "id": "p-102", "title": "Data Structures in JS", "author": "Beth" },
+//   "p-103": { "id": "p-103", "title": "Understanding Reduce", "author": "Chris" },
+//   "p-104": { "id": "p-104", "title": "CSS Grid Tricks", "author": "Alex" }
+// }
+
+// const postTable = postsArray.reduce((table, current) => {
+//   table[current.id] = current;
+//   return table;
+// }, {});
+//console.log(postTable);
+// const start = performance.now();
+// const post = postsArray.find((p) => p.id === "p-103");
+// console.log(post);
+// const end = performance.now();
+// console.log(`Array implementation took ${end - start} milliseconds`); //5.4ms
+
+// const start = performance.now();
+// const post = postTable["p-103"];
+// const end = performance.now();
+// console.log(`Lookup implementation took ${end - start} milliseconds`); //0.003ms
+
+// const start = performance.now();
+// const postMap = new Map();
+// postsArray.forEach((post) => postMap.set(post.id, post));
+// const post = postMap.get("p-103");
+// console.log(post);
+// const end = performance.now();
+// console.log(`Lookup implementation took ${end - start} milliseconds`); //5.3ms
+//* Grouping and Aggregating Data
+
+// Scenario: Count every survey and group by response
+
+//? input
+const surveyResponses = [
+  "A",
+  "C",
+  "B",
+  "A",
+  "B",
+  "B",
+  "C",
+  "A",
+  "B",
+  "D",
+  "A",
+  "C",
+  "B",
+  "A",
 ];
 
-const bestScorer = players.reduce((bestPlayer, player) => {
-  if (bestPlayer.score > player.score) return bestPlayer;
-  return player;
-}, players[0]);
-
-console.log(bestScorer);
+//? Output
+// { A: 5, C: 3, B: 5, D: 1 }
