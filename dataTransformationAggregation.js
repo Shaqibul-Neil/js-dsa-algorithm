@@ -304,22 +304,41 @@ const rawApiData = [
 // Scenario: Count every survey and group by response
 
 //? input
-const surveyResponses = [
-  "A",
-  "C",
-  "B",
-  "A",
-  "B",
-  "B",
-  "C",
-  "A",
-  "B",
-  "D",
-  "A",
-  "C",
-  "B",
-  "A",
-];
+// const surveyResponses = [
+//   "A",
+//   "C",
+//   "B",
+//   "A",
+//   "B",
+//   "B",
+//   "C",
+//   "A",
+//   "B",
+//   "D",
+//   "A",
+//   "C",
+//   "B",
+//   "A",
+// ];
 
 //? Output
 // { A: 5, C: 3, B: 5, D: 1 }
+
+// const output = surveyResponses.reduce((table, current) => {
+//   console.log("before", table[current]);
+//   table[current] = (table[current] || 0) + 1; //undefined || 0 --> takes 0
+//   console.log("after", table[current]);
+//   return table;
+// }, {});
+// console.log(output);
+
+// const count = surveyResponses.reduce((table, res) => {
+//   if (table[res]) {
+//     table[res] = table[res] + 1;
+//   } else {
+//     table[res] = 1;
+//   }
+//   return table;
+// }, {});
+
+// console.log(count);
