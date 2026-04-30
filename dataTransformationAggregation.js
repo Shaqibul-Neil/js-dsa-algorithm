@@ -466,7 +466,7 @@ console.log(userPostMap);
 
 // Scenario: You have a long list of user click events.
 // You need to "bin" these events into 30-minute intervals and count them to see engagement over time.
-
+/*
 //? Input
 const events = [
   { timestamp: "2025-10-22T10:01:00Z", type: "click" },
@@ -509,3 +509,4 @@ const binnedData = events.reduce((table, event) => {
   return table;
 }, {});
 console.log(binnedData);
+*/
