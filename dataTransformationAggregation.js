@@ -407,3 +407,79 @@ const output = sales.reduce((table, sale) => {
 }, {});
 console.log(output);
 */
+
+//* Denormalizing Data (Client-Side "Join")
+
+// Scenario: You have an array of users and a separate array of posts.
+// You want to create a new array of users where each user object contains a posts array of their own posts.
+
+//? input
+const users = [
+  { id: 101, name: "Alice" },
+  { id: 102, name: "Bob" },
+  { id: 103, name: "Charlie" },
+];
+
+const posts = [
+  { id: 1, userId: 102, title: "My first post" },
+  { id: 2, userId: 101, title: "React Hooks" },
+  { id: 3, userId: 101, title: "Data Structures" },
+  { id: 4, userId: 103, title: "CSS is fun" },
+  { id: 5, userId: 102, title: "Node.js streams" },
+];
+
+//? output
+// [
+//   { id: 101, name: 'Alice', posts: [ { id: 2, ... }, { id: 3, ... } ] },
+//   { id: 102, name: 'Bob', posts: [ { id: 1, ... }, { id: 5, ... } ] },
+//   { id: 103, name: 'Charlie', posts: [ { id: 4, ... } ] }
+// ]
+
+//Create LookupTable of posts
+//
+
+const postTable = posts.reduce((table, post) => {
+  if (!table[post.userId]) {
+    table[post.userId] = [];
+  }
+  table[post.userId].push(post);
+  return table;
+}, {});
+console.log(postTable);
+
+//Option A (Most practical)
+const userWithPost = users.map((user) => {
+  return { ...user, posts: postTable[user.id] || [] };
+});
+
+console.log(JSON.stringify(userWithPost));
+
+//Option B (High-performance system)
+const userPostMap = new Map();
+console.log(userPostMap);
+
+users.forEach((user) => userPostMap.set(user.id, postTable[user.id]));
+
+console.log(userPostMap);
+
+//* Binning (Resampling) Time Series Data
+
+// Scenario: You have a long list of user click events.
+// You need to "bin" these events into 30-minute intervals and count them to see engagement over time.
+
+//? Input
+const events = [
+  { timestamp: "2025-10-22T10:01:00Z", type: "click" },
+  { timestamp: "2025-10-22T10:05:00Z", type: "scroll" },
+  { timestamp: "2025-10-22T10:14:00Z", type: "click" },
+  { timestamp: "2025-10-22T10:31:00Z", type: "click" },
+  { timestamp: "2025-10-22T10:45:00Z", type: "scroll" },
+  { timestamp: "2025-10-22T11:02:00Z", type: "click" },
+];
+
+//? Output
+// binnedEvents = {
+//   "2025-10-22T10:00:00.000Z": { "total": 3 },
+//   "2025-10-22T10:30:00.000Z": { "total": 2 },
+//   "2025-10-22T11:00:00.000Z": { "total": 1 }
+// }
