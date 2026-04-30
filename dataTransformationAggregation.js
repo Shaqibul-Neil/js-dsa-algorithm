@@ -412,7 +412,7 @@ console.log(output);
 
 // Scenario: You have an array of users and a separate array of posts.
 // You want to create a new array of users where each user object contains a posts array of their own posts.
-
+/*
 //? input
 const users = [
   { id: 101, name: "Alice" },
@@ -461,7 +461,7 @@ console.log(userPostMap);
 users.forEach((user) => userPostMap.set(user.id, postTable[user.id]));
 
 console.log(userPostMap);
-
+*/
 //* Binning (Resampling) Time Series Data
 
 // Scenario: You have a long list of user click events.
@@ -483,3 +483,29 @@ const events = [
 //   "2025-10-22T10:30:00.000Z": { "total": 2 },
 //   "2025-10-22T11:00:00.000Z": { "total": 1 }
 // }
+
+//30 mins in milliseconds
+const INTERVAL = 30 * 60 * 1000;
+
+const getBinningTimeStamp = (timestamp) => {
+  const date = new Date(timestamp);
+  // console.log("before floor", date.getTime()); //epoc time
+  const flooredDate = Math.floor(date.getTime() / INTERVAL) * INTERVAL;
+  //console.log("after floor", flooredDate);
+
+  return new Date(flooredDate).toISOString();
+};
+console.log(getBinningTimeStamp(events[5].timestamp));
+console.log(getBinningTimeStamp(events[3].timestamp));
+console.log(getBinningTimeStamp(events[4].timestamp));
+//
+
+const binnedData = events.reduce((table, event) => {
+  const bin = getBinningTimeStamp(event.timestamp);
+  if (!table[bin]) {
+    table[bin] = { total: 0 };
+  }
+  table[bin].total += 1;
+  return table;
+}, {});
+console.log(binnedData);
